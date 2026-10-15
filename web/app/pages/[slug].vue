@@ -24,6 +24,8 @@ const urlFor = (source: SanityImageSource) =>
       :src="urlFor(post.image)?.width(550).height(310).url()"
       :alt="post?.title"
       class="aspect-video rounded-xl"
+      fetchpriority="high"
+      decoding="async"
       width="550"
       height="310"
     />
