@@ -1,5 +1,10 @@
 # Bloggy - Nuxt x Sanity Template
 
+## Requirement
+Sanity project
+Pnpm
+node v26
+
 ## Install
 
 ## Create .env
