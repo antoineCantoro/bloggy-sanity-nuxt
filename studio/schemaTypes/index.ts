@@ -1,9 +1,9 @@
 import type {SchemaTypeDefinition} from 'sanity'
 
-import {eventType} from './eventType'
-import {postType} from './postType'
-import {artistType} from './artistType'
-import {articleType} from './articleType'
+// import {eventType} from './eventType'
+// import {postType} from './postType'
+// import {artistType} from './artistType'
+// import {articleType} from './articleType'
 
 
 // Blueprints (pages)

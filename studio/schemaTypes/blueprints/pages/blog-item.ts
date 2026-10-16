@@ -1,4 +1,4 @@
-import {defineType, defineField} from 'sanity'
+import {defineType, defineField, defineArrayMember} from 'sanity'
 // import {HomeIcon} from '@sanity/icons'
 
 export const blogItemPageType = defineType({
@@ -30,6 +30,38 @@ export const blogItemPageType = defineType({
       name: 'image',
       type: 'image',
       validation: rule => rule.required(),
+    }),
+    defineField({
+      name: 'pageBuilder',
+      type: 'array',
+      title: 'Page builder',
+      of: [
+        defineArrayMember({
+          name: 'hero',
+          type: 'hero',
+        }),
+        // defineArrayMember({
+        //   name: 'textWithIllustration',
+        //   type: 'textWithIllustration',
+        // }),
+        // defineArrayMember({
+        //   name: 'gallery',
+        //   type: 'gallery',
+        // }),
+        // defineArrayMember({
+        //   name: 'form',
+        //   type: 'form',
+        // }),
+        // defineArrayMember({
+        //   name: 'video',
+        //   type: 'video',
+        // }),
+        // defineArrayMember({
+        //   name: 'callToAction',
+        //   type: 'reference',
+        //   to: [{type: 'promotion'}],
+        // }),
+      ],
     }),
     // defineField({
     //   name: 'pageBuilder',

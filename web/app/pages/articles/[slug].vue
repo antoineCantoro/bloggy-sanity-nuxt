@@ -2,6 +2,13 @@
 import type { SanityDocument } from "@sanity/client";
 import { createImageUrlBuilder, type SanityImageSource } from "@sanity/image-url";
 
+// import SanityContent from "~/app/components/sanity-content.vue";
+import Hero from "~/components/blocks/hero.vue";
+
+const blockComponents = {
+  hero: Hero,
+};
+
 const POST_QUERY = groq`*[_type == "blogItemPage" && slug.current == $slug][0]`;
 const { params } = useRoute();
 
@@ -35,6 +42,19 @@ const urlFor = (source: SanityImageSource) =>
         Published: {{ new Date(post.publishedAt).toLocaleDateString() }}
       </p>
       <SanityContent v-if="post.body" :value="post.body" />
+      <hr />
+
+      {{ post.pageBuilder }}
+
+      <hr />
+
+      <template v-for="block in post.pageBuilder" :key="block._key">
+        <component
+          :is="blockComponents[block._type]"
+          v-if="blockComponents[block._type]"
+          v-bind="block"
+        />
+      </template>
     </div>
   </main>
 </template>
