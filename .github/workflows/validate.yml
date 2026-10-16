@@ -1,5 +1,7 @@
 name: Validate Template
 on: push
+branches:
+  - main
 
 jobs:
   validate:
