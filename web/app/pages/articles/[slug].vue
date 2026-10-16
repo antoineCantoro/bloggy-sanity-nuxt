@@ -39,7 +39,8 @@ const urlFor = (source: SanityImageSource) =>
     <h1 v-if="post.title" class="text-4xl font-bold mb-8">{{ post.title }}</h1>
     <div class="prose">
       <p v-if="post.publishedAt">
-        Published: {{ new Date(post.publishedAt).toLocaleDateString() }}
+        Published:
+        {{ new Date(post.publishedAt).toLocaleDateString("fr-FR", { timeZone: "UTC" }) }}
       </p>
       <SanityContent v-if="post.body" :value="post.body" />
       <hr />
