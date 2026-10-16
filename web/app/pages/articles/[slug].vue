@@ -6,10 +6,19 @@ import type { SanityDocument } from "@sanity/client";
 import HeroBlog from "~/components/HeroBlog.vue";
 
 // Block components
-import Hero from "~/components/blocks/hero.vue";
+import Hero from "~/components/blocks/Hero.vue";
+import Gallery from "~/components/blocks/Gallery.vue";
+import Video from "~/components/blocks/Video.vue";
+import Quote from "~/components/blocks/Quote.vue";
+import TextContent from "~/components/blocks/TextContent.vue";
+
 
 const registredBlockComponents: Record<string, any> = {
-  hero: Hero,
+  Hero: Hero,
+  Gallery: Gallery,
+  Video: Video,
+  Quote: Quote,
+  TextContent: TextContent,
 };
 
 const POST_QUERY = BLOG_ITEM_QUERY;
