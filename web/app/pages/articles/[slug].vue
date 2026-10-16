@@ -1,23 +1,21 @@
 <script setup lang="ts">
+import { BLOG_ITEM_QUERY } from "~/queries/blog";
 import type { SanityDocument } from "@sanity/client";
-import { createImageUrlBuilder, type SanityImageSource } from "@sanity/image-url";
 
-// import SanityContent from "~/app/components/sanity-content.vue";
+// Template related components
+import HeroBlog from "~/components/HeroBlog.vue";
+
+// Block components
 import Hero from "~/components/blocks/hero.vue";
 
-const blockComponents = {
+const registredBlockComponents: Record<string, any> = {
   hero: Hero,
 };
 
-const POST_QUERY = groq`*[_type == "blogItemPage" && slug.current == $slug][0]`;
+const POST_QUERY = BLOG_ITEM_QUERY;
 const { params } = useRoute();
 
 const { data: post } = await useSanityQuery<SanityDocument>(POST_QUERY, params);
-const { projectId, dataset } = useSanity().client.config();
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? createImageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
 </script>
 
 <template>
@@ -25,37 +23,27 @@ const urlFor = (source: SanityImageSource) =>
     v-if="post"
     class="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4"
   >
-    <a href="/" class="hover:underline">&larr; Back to posts</a>
-    <img
-      v-if="post.image"
-      :src="urlFor(post.image)?.width(550).height(310).url()"
-      :alt="post?.title"
-      class="aspect-video rounded-xl"
-      fetchpriority="high"
-      decoding="async"
-      width="550"
-      height="310"
+    <HeroBlog
+      v-if="post.title"
+      :title="post.title"
+      :subtitle="post.subtitle"
+      :image="post.image"
+      :publishedAt="post.publishedAt"
     />
-    <h1 v-if="post.title" class="text-4xl font-bold mb-8">{{ post.title }}</h1>
-    <div class="prose">
-      <p v-if="post.publishedAt">
-        Published:
-        {{ new Date(post.publishedAt).toLocaleDateString("fr-FR", { timeZone: "UTC" }) }}
-      </p>
-      <SanityContent v-if="post.body" :value="post.body" />
-      <hr />
 
-      {{ post.pageBuilder }}
+    <!-- <SanityContent v-if="post.body" :value="post.body" /> -->
 
-      <hr />
+    <!-- Block Builder -->
+    <template v-for="block in post.pageBuilder" :key="block._key">
+      <component
+        :is="registredBlockComponents[block._type]"
+        v-if="registredBlockComponents[block._type]"
+        v-bind="block"
+      />
+    </template>
 
-      <template v-for="block in post.pageBuilder" :key="block._key">
-        <component
-          :is="blockComponents[block._type]"
-          v-if="blockComponents[block._type]"
-          v-bind="block"
-        />
-      </template>
-    </div>
+    <!-- Debug output for the page builder blocks -->
+    <h3 class="text-lg font-bold">Page Builder Debug Output</h3>
+    <pre class="rounded-md p-4 bg-gray-100 overflow-x-auto">{{ post.pageBuilder }}</pre>
   </main>
 </template>
