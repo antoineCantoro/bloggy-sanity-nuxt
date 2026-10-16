@@ -6,10 +6,16 @@ export const blogItemPageType = defineType({
   title: 'Blog Item Page',
   type: 'document',
   // icon: HomeIcon,
+  groups: [
+    {name: 'information', title: 'Information', default: true},
+    {name: 'builder', title: 'Builder'},
+    {name: 'seo', title: 'SEO'},
+  ],
   fields: [
     defineField({
       name: 'title',
       type: 'string',
+      group: 'information',
       validation: rule => rule.required(),
     }),
     defineField({
@@ -19,15 +25,18 @@ export const blogItemPageType = defineType({
         source: 'title',
         maxLength: 96,
       },
+      group: 'information',
       validation: rule => rule.required(),
     }),
     defineField({
       name: 'publishedAt',
+      group: 'information',
       type: 'datetime',
       validation: rule => rule.required(),
     }),
     defineField({
       name: 'image',
+      group: 'information',
       type: 'image',
       validation: rule => rule.required(),
     }),
@@ -35,6 +44,7 @@ export const blogItemPageType = defineType({
       name: 'excerpt',
       type: 'object',
       title: 'Excerpt',
+      group: 'information',
       fields: [
         defineField({
           name: 'excerpt',
@@ -55,10 +65,12 @@ export const blogItemPageType = defineType({
         }),
       ],
     }),
+    // Builder Tab
     defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
+      group: 'builder',
       of: [
         defineArrayMember({
           name: 'Hero',
@@ -82,17 +94,14 @@ export const blogItemPageType = defineType({
         }),
       ],
     }),
-    // defineField({
-    //   name: 'pageBuilder',
-    //   title: 'Page Builder',
-    //   type: 'pageBuilder',
-    // }),
-    // defineField({
-    //   name: 'seo',
-    //   title: 'SEO',
-    //   type: 'seo',
-    //   options: {collapsible: true, collapsed: true},
-    // }),
+    // SEO Tab
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+      group: 'seo',
+      // options: {collapsible: true, collapsed: false},
+    }),
   ],
   preview: {
     select: {

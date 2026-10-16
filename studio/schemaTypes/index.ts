@@ -10,6 +10,9 @@ import {blogIndexPageType} from './blueprints/pages/blog-index'
 import {blogItemPageType} from './blueprints/pages/blog-item'
 import {contactPageType} from './blueprints/pages/contact'
 
+// Blueprints (fields)
+import {fieldTypes} from './fields'
+
 const blueprintsTypes = [
   // pageType,
   homePageType,
@@ -29,4 +32,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   ...blockTypes,
   ...siteTypes,
   ...blueprintsTypes,
+  ...fieldTypes,
 ]
