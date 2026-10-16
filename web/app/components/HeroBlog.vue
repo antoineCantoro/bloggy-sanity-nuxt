@@ -1,6 +1,6 @@
 <template>
   <div class="m-heroBlog flex flex-col gap-4">
-    <a href="/" class="hover:underline mb-4">&larr; Back to posts</a>
+    <a href="/articles" class="hover:underline mb-4">&larr; Back to posts</a>
     <h2 v-if="subtitle">{{ subtitle }}</h2>
     <img
       v-if="imageUrl"

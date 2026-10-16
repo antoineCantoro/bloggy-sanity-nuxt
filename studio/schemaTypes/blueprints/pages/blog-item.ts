@@ -65,6 +65,12 @@ export const blogItemPageType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'readingTime',
+      type: 'string',
+      group: 'information',
+      // validation: rule => rule.required(),
+    }),
     // Builder Tab
     defineField({
       name: 'pageBuilder',

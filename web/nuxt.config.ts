@@ -16,8 +16,28 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
-    '@nuxtjs/sanity'
+    '@nuxtjs/sanity',
+    '@nuxt/fonts'
   ],
+
+  fonts: {
+    families: [
+      {
+        name: 'PPNeueMontreal',
+        src: '/fonts/PPNeueMontreal-Regular.woff2',
+        weight: 400,
+        style: 'normal',
+        display: 'swap'
+      },
+      {
+        name: 'PPNeueMontreal',
+        src: '/fonts/PPNeueMontreal-Bold.woff2',
+        weight: 700,
+        style: 'normal',
+        display: 'swap'
+      }
+    ]
+  },
 
   sanity: {
     projectId: process.env.SANITY_STUDIO_PROJECT_ID,
