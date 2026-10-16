@@ -6,24 +6,27 @@ export const videoType = defineType({
   title: 'Video',
   fields: [
     defineField({
-      name: 'heading',
+      name: 'youtube_id',
       type: 'string',
+      title: 'YouTube ID',
+      validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'tagline',
+      name: 'title',
       type: 'string',
+      title: 'Title',
+      validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-      options: {hotspot: true},
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-        }),
-      ],
+      name: 'display_title',
+      title: 'Display title?',
+      type: 'boolean',
+      options: {layout: 'checkbox'},
+    }),
+    defineField({
+      name: 'legend',
+      type: 'string',
+      title: 'Legend',
     }),
   ],
 })

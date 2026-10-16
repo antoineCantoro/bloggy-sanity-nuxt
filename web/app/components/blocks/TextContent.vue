@@ -1,9 +1,10 @@
 <template>
-  TEST
-    <!-- <SanityContent :value="text" /> -->
+  <div class="b-text flex flex-col gap-2">
+    <SanityContent :value="textContent" />
+  </div>
 </template>
 <script setup lang="ts">
   defineProps<{
-    text: string;
+    textContent: string;
   }>();
 </script>

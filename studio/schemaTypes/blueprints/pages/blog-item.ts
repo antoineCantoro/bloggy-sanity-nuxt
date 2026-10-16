@@ -32,6 +32,30 @@ export const blogItemPageType = defineType({
       validation: rule => rule.required(),
     }),
     defineField({
+      name: 'excerpt',
+      type: 'object',
+      title: 'Excerpt',
+      fields: [
+        defineField({
+          name: 'excerpt',
+          type: 'array',
+          title: 'Excerpt',
+          of: [
+            {
+              type: 'block',
+              styles: [],
+              lists: [],
+              marks: {
+                decorators: [],
+                annotations: []
+              },
+            }
+          ],
+          // validation: (rule) => rule.required(),
+        }),
+      ],
+    }),
+    defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',

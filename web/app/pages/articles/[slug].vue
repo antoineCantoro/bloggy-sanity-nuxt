@@ -18,7 +18,7 @@ const registredBlockComponents: Record<string, any> = {
   Gallery: Gallery,
   Video: Video,
   Quote: Quote,
-  TextContent: TextContent,
+  Text: TextContent,
 };
 
 const POST_QUERY = BLOG_ITEM_QUERY;
@@ -30,7 +30,7 @@ const { data: post } = await useSanityQuery<SanityDocument>(POST_QUERY, params);
 <template>
   <main
     v-if="post"
-    class="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4"
+    class="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-10"
   >
     <HeroBlog
       v-if="post.title"
@@ -39,6 +39,11 @@ const { data: post } = await useSanityQuery<SanityDocument>(POST_QUERY, params);
       :image="post.image"
       :publishedAt="post.publishedAt"
     />
+
+    <!-- Excerpt Section -->
+    <div class="t-blogIndex_excerpt font-bold text-2xl">
+      <SanityContent v-if="post.excerpt?.excerpt" :value="post.excerpt.excerpt" />
+    </div>
 
     <!-- <SanityContent v-if="post.body" :value="post.body" /> -->
 
