@@ -37,30 +37,25 @@ export const blogItemPageType = defineType({
       title: 'Page builder',
       of: [
         defineArrayMember({
-          name: 'hero',
+          name: 'Hero',
           type: 'hero',
         }),
-        // defineArrayMember({
-        //   name: 'textWithIllustration',
-        //   type: 'textWithIllustration',
-        // }),
-        // defineArrayMember({
-        //   name: 'gallery',
-        //   type: 'gallery',
-        // }),
-        // defineArrayMember({
-        //   name: 'form',
-        //   type: 'form',
-        // }),
-        // defineArrayMember({
-        //   name: 'video',
-        //   type: 'video',
-        // }),
-        // defineArrayMember({
-        //   name: 'callToAction',
-        //   type: 'reference',
-        //   to: [{type: 'promotion'}],
-        // }),
+        defineArrayMember({
+          name: 'Quote',
+          type: 'quote',
+        }),
+        defineArrayMember({
+          name: 'Gallery',
+          type: 'gallery',
+        }),
+        defineArrayMember({
+          name: 'Video',
+          type: 'video',
+        }),
+        defineArrayMember({
+          name: 'Text',
+          type: 'textContent',
+        }),
       ],
     }),
     // defineField({
@@ -76,11 +71,9 @@ export const blogItemPageType = defineType({
     // }),
   ],
   preview: {
-    prepare() {
-      return {
-        title: 'Blog Item Page',
-        // media: HomeIcon,
-      }
+    select: {
+      title: 'title',
+      media: 'image',
     },
   },
 })

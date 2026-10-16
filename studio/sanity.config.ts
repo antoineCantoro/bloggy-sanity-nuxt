@@ -13,6 +13,7 @@ const singletonPages = [
   {id: 'aboutPage', title: 'About Page'},
   {id: 'blogIndexPage', title: 'Blog Index Page'},
   {id: 'contactPage', title: 'Contact Page'},
+  {id: 'siteSettings', title: 'Site Settings'},
 ] as const
 
 const singletonTypes = new Set(singletonPages.map(({id}) => id))
