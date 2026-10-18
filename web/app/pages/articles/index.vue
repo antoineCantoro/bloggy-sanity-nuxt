@@ -9,11 +9,12 @@
     title: string;
     publishedAt: string;
     readingTime?: string;
+    enablePasswordRestricted?: boolean;
     excerpt?: string;
     slug: {
       current: string;
     };
-    imageAlt?: string;
+    image?: SanityImageSource;
     author?: string;
     imageAlt?: string;
   }>;
@@ -25,7 +26,7 @@
   const blogPostsQuery = groq`*[
     _type == "blogItemPage"
     && defined(slug.current)
-  ]|order(publishedAt desc)[0...12]{_id, slug, title, publishedAt, readingTime, image, excerpt, imageAlt}`;
+  ]|order(publishedAt desc)[0...12]{_id, slug, title, publishedAt, readingTime, image, excerpt, imageAlt, enablePasswordRestricted}`;
 
   const { data: posts } = await useSanityQuery<PostsQueryResult>(blogPostsQuery);
 </script>
@@ -41,6 +42,7 @@
           :publishedAt="post.publishedAt"
           :url="`/articles/${post.slug.current}`"
           :titleTag="'h3'"
+          :enablePasswordRestricted="post.enablePasswordRestricted"
           :excerpt="post.excerpt"
           :readingTime="post.readingTime"
           :author="post.author"

@@ -16,12 +16,26 @@ export const seoType = defineType({
       validation: (rule) => rule.max(META_TITLE_MAX).warning(`Should be under ${META_TITLE_MAX} characters`),
     }),
     defineField({
+      name: 'metaTitleSuffix',
+      title: 'Meta Title Suffix',
+      type: 'boolean',
+      description: `Add website suffix to the meta title`,
+      initialValue: false,
+    }),
+    defineField({
       name: 'metaDescription',
       title: 'Meta Description',
       type: 'text',
       rows: 3,
       description: `Recommended max ${META_DESC_MAX} characters`,
       validation: (rule) => rule.max(META_DESC_MAX).warning(`Should be under ${META_DESC_MAX} characters`),
+    }),
+    defineField({
+      name: 'additionalMetas',
+      title: 'Additional Metas',
+      description: `Add additional meta tags for this page`,
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
     defineField({
       name: 'ogImage',

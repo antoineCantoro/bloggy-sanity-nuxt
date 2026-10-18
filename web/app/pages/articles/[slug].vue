@@ -12,7 +12,12 @@ import Video from "~/components/blocks/Video.vue";
 import Quote from "~/components/blocks/Quote.vue";
 import TextContent from "~/components/blocks/TextContent.vue";
 
+// Define page template middlewares
+definePageMeta({
+  middleware: 'protected-blog-post',
+})
 
+// Registered block components mapping
 const registredBlockComponents: Record<string, any> = {
   Hero: Hero,
   Gallery: Gallery,
@@ -21,10 +26,38 @@ const registredBlockComponents: Record<string, any> = {
   Text: TextContent,
 };
 
-const POST_QUERY = BLOG_ITEM_QUERY;
+// Query and route parameters for fetching the blog post
 const { params } = useRoute();
+const { data: post } = await useSanityQuery<SanityDocument>(BLOG_ITEM_QUERY, params);
 
-const { data: post } = await useSanityQuery<SanityDocument>(POST_QUERY, params);
+// Metadata resolution function
+const resolveMetadata = (post: SanityDocument) => {
+  const metaTitle = post.metaTitle ?? post.metaTitle ?? post.title;
+  const metaDescription = post.metaDescription ?? post.ogMetaDescription ?? post.excerpt?.excerpt?.[0]?.children?.[0]?.text ?? '';
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+  };
+};
+
+// Metadata
+if (import.meta.server) {
+  if (post) {
+    const { title: metaTitle, description: metaDescription } = resolveMetadata(post);
+    useSeoMeta({
+      title: metaTitle,
+      description: metaDescription,
+    });
+  }
+}
+
+const dynamicTitle = ref(post?.title || '')
+useSeoMeta({
+  title: () => dynamicTitle.value,
+  ogTitle: () => dynamicTitle.value,
+})
+
 </script>
 
 <template>

@@ -108,6 +108,24 @@ export const blogItemPageType = defineType({
       group: 'seo',
       // options: {collapsible: true, collapsed: false},
     }),
+    defineField({
+      name: 'robots',
+      title: 'Robots',
+      type: 'robots',
+      group: 'seo',
+    }),
+    defineField({
+      name: 'sitemap',
+      title: 'Sitemap',
+      type: 'sitemap',
+      group: 'seo',
+    }),
+    defineField({
+      name: 'restricted',
+      title: 'Restricted',
+      type: 'restricted',
+      group: 'seo',
+    }),
   ],
   preview: {
     select: {

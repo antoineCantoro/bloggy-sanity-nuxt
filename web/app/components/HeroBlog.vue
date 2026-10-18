@@ -36,6 +36,6 @@
 
   const urlFor = useSanityImageUrl();
   const imageUrl = computed(() =>
-    props.image ? urlFor(props.image)?.width(550).height(310).url() : undefined,
+    props.image ? urlFor(props.image)?.width(800).height(800).url() : undefined,
   );
 </script>

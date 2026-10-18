@@ -4,7 +4,9 @@
   </div>
 </template>
 <script setup lang="ts">
+  import type { PortableTextBlock } from "@portabletext/types";
+
   defineProps<{
-    textContent: string;
+    textContent: PortableTextBlock[];
   }>();
 </script>

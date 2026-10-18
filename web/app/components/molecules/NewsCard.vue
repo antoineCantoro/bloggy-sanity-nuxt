@@ -19,8 +19,8 @@
 
       <!-- Bottom -->
       <div class="w-1/2 text-[14px]/[13px] font-bold line">
-        <!-- <p v-if="excerpt" class="w-50">{{ excerpt }}</p> -->
-      <SanityContent :value="excerpt.excerpt" v-if="excerpt" />
+        <p v-if="enablePasswordRestricted" class="text-[14px]/[13px] font-bold w-25%">[Password Protected]</p>
+        <SanityContent :value="excerpt.excerpt" v-if="excerpt" />
       </div>
     </div>
   </div>
@@ -38,6 +38,7 @@
     readingTime = "",
     author = "",
     url = "",
+    enablePasswordRestricted = false,
     titleTag = "h3",
   } = defineProps<{
     title?: string;
@@ -49,6 +50,7 @@
     author?: string;
     url?: string;
     titleTag?: "h2" | "h3" | "h4";
+    enablePasswordRestricted?: boolean;
   }>()
 
   const urlFor = useSanityImageUrl();
