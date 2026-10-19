@@ -17,6 +17,8 @@
   --color-green-800: #016538;
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
+
+  --color-blue-500: #2455F5;
 }
 
 @layer base {

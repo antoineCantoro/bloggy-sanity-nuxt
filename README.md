@@ -8,7 +8,9 @@ node v26
 ## Install
 
 ## Create .env
-## Install with pnpm install
+## Install dependencies
+```pnpm install```
+
 ## Run local servers (studio & web) : 
 ```pnpm -r --parallel dev```
 

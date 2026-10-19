@@ -20,7 +20,7 @@
       <!-- Bottom -->
       <div class="w-1/2 text-[14px]/[13px] font-bold line">
         <p v-if="enablePasswordRestricted" class="text-[14px]/[13px] font-bold w-25%">[Password Protected]</p>
-        <SanityContent :value="excerpt.excerpt" v-if="excerpt" />
+        <SanityContent :value="excerpt" v-if="excerpt.length" />
       </div>
     </div>
   </div>
@@ -28,10 +28,11 @@
 
 <script setup lang="ts">
   import type { SanityImageSource } from "@sanity/image-url";
+  import type { PortableTextBlock } from "@portabletext/types";
 
   const {
     title = "",
-    excerpt = "",
+    excerpt = [],
     image = "",
     imageAlt = "",
     publishedAt,
@@ -42,7 +43,7 @@
     titleTag = "h3",
   } = defineProps<{
     title?: string;
-    excerpt?: string;
+    excerpt?: PortableTextBlock[];
     image?: SanityImageSource;
     imageAlt?: string;
     publishedAt?: string;

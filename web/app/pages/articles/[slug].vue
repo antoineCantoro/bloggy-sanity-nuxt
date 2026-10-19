@@ -14,7 +14,7 @@ import TextContent from "~/components/blocks/TextContent.vue";
 
 // Define page template middlewares
 definePageMeta({
-  middleware: 'protected-blog-post',
+  // middleware: 'protected-blog-post',
 })
 
 // Registered block components mapping
