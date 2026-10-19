@@ -93,5 +93,27 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
-  }
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'altcha-widget',
+    },
+  },
+
+  runtimeConfig: {
+    server: {
+      altchaHmacSecret: process.env.ALTCHA_HMAC_SECRET,
+      altchaHmacKeySecret: process.env.ALTCHA_HMAC_KEY_SECRET,
+    }
+  },
+
+  // plugins: [vue({
+  //   template: {
+  //     compilerOptions: {
+  //       isCustomElement: (tag) => tag.indexOf('-') >= 0
+  //     }
+  //   }
+  // })],
+
 })

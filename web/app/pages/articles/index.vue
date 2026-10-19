@@ -39,7 +39,7 @@
 
   // let lastPublishedAt = posts?.[posts.length - 1]?.publishedAt;
   // console.log(lastPublishedAt);
-  console.log(posts);
+  // console.log(posts);
 
   let lastPublishedAt = ''
   let lastId = ''
@@ -56,7 +56,7 @@
 
 
   const onUpdateCurrentPage = async (newPage: number) => {
-    console.log('Updating to page:', newPage);
+    // console.log('Updating to page:', newPage);
     currentPage.value = newPage;
     // const nextPosts = await fetchNextPage();
     // if (nextPosts.length > 0) {
@@ -65,7 +65,7 @@
   };
 
   const onClickPrevious = async (newPage: number) => {
-    console.log('Updating to previous page:', newPage);
+    // console.log('Updating to previous page:', newPage);
     if (newPage < 1) {
       return;
     }
@@ -73,7 +73,7 @@
   };
 
   const onClickNext = async (newPage: number) => {
-    console.log('Updating to next page:', newPage);
+    // console.log('Updating to next page:', newPage);
     if (newPage > Math.ceil((totalArticles.value ?? 0) / POSTS_PER_PAGE)) {
       return;
     }

@@ -21,6 +21,8 @@
     "@nuxtjs/sanity": "^2.5.0",
     "@sanity/client": "^8.9.0",
     "@sanity/image-url": "^2.1.1",
+    "altcha": "^3.4.1",
+    "altcha-lib": "^2.6.0",
     "nuxt": "^4.6.1",
     "tailwindcss": "^4.3.3"
   },
