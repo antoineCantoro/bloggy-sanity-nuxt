@@ -1,14 +1,16 @@
 <template>
-  <figure class="b-quote flex flex-col gap-y-3 items-start bg-gray-100 p-4 rounded">
-    <blockquote v-if="quote?.length">
-      <SanityContent :value="quote" />
-    </blockquote>
+  <div class="b-quote border border-gray-300 bg-white p-8">
+    <figure class="flex flex-col gap-y-4 items-start pl-6 border-l-2 border-blue-500">
+      <blockquote v-if="quote?.length" class="text-2xl ">
+        <SanityContent :value="quote" />
+      </blockquote>
 
-    <figcaption v-if="author" class="text-xs text-gray-600">
-      {{ author }}
-      <span v-if="role"> · {{ role }}</span>
-    </figcaption>
-  </figure>
+      <figcaption v-if="author" class="font-mono text-xs text-gray-500">
+        {{ author }}
+        <span v-if="role"> / {{ role }}</span>
+      </figcaption>
+    </figure>
+  </div>
 </template>
 <script setup lang="ts">
   defineProps<{

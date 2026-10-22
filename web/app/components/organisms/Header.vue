@@ -1,5 +1,9 @@
 <template>
   <header>
-    <p>Header content shared across all pages</p>
+    <Logo />
   </header>
 </template>
+
+<script setup lang="ts">
+import Logo from '~/components/atoms/AppLogo.vue'
+</script>

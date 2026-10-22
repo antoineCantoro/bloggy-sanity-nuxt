@@ -4,24 +4,32 @@
 @source "../../";
 
 @theme static {
-  --font-sans: "PPNeueMontreal", sans-serif;
 
-  --color-green-50: #EFFDF5;
-  --color-green-100: #D9FBE8;
-  --color-green-200: #B3F5D1;
-  --color-green-300: #75EDAE;
-  --color-green-400: #00DC82;
-  --color-green-500: #00C16A;
-  --color-green-600: #00A155;
-  --color-green-700: #007F45;
-  --color-green-800: #016538;
-  --color-green-900: #0A5331;
-  --color-green-950: #052E16;
+  /* Font family */
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 
-  --color-blue-50: #EDF1FF;
+
+  /* Text sizes */
+  --text-tiny: 0.75rem;
+  --text-tiny--line-height: 1.5rem;
+  --text-tiny--letter-spacing: 0.125rem;
+  --text-tiny--font-weight: 500;
+
+
+  /* Colors */
+  /* --color-*: initial; */
+  --color-blue-100: #EDF1FF;
   --color-blue-500: #2455F5;
 
+  --color-yellow-100: #F8F3E8;
+  --color-yellow-500: #876020;
+
   --color-black: #181A1E;
+  --color-gray-100: #F4F4F0;
+  --color-gray-200: #EDF1FF;
+  --color-gray-300: #DCDDD8;
+  --color-gray-500: #6D7179;
 }
 
 @layer base {

@@ -1,3 +1,6 @@
-import { altcha } from '~/server/utils/altcha';
+import { getAltcha } from '#server/utils/altcha';
 
-export default altcha.verifyHandler;
+export default defineEventHandler(async (event) => {
+  const altcha = await getAltcha();
+  return altcha.verifyHandler(event);
+});
