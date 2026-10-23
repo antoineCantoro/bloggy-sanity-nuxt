@@ -12,22 +12,21 @@
       >
         <fieldset class="flex flex-col gap-2">
           <label for="email">Email</label>
-          <input type="text" id="email" v-model="formData.email" name="email" placeholder="you@example.com" required />
+          <input type="email" id="email" v-model="formData.email" name="email" placeholder="you@example.com" required />
         </fieldset>
         <fieldset class="flex flex-col gap-2" v-show="formData.email">
           <label for="rgpd">checkbox</label>
           <input type="checkbox" id="rgpd" v-model="formData.rgpd" name="rgpd" />
         </fieldset>
 
-        <button type="submit">Subscribe</button>
-        <!-- <ClientOnly> -->
-            <!-- <Altcha
-              v-model:payload="formData.altchaPayload"
-            /> -->
+        <AppButton type="submit" variant="primary">
+          Subscribe <ArrowRight :size="16" />
+        </AppButton>
+        <ClientOnly>
             <Altcha
               v-model:payload="formData.altchaPayload"
             />
-        <!-- </ClientOnly> -->
+        </ClientOnly>
 
       </form>
       <p v-if="formData.success">Thank you for subscribing!</p>
@@ -40,6 +39,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import Altcha from '~/components/atoms/Altcha.vue';
+import AppButton from '~/components/atoms/Button.vue'
+import { ArrowRight } from '@lucide/vue';
 import { emailValidator, requiredValidator } from '#shared/validators'
 
 const formData = reactive({

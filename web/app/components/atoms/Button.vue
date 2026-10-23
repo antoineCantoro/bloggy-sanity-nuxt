@@ -1,5 +1,5 @@
 <template>
-  <component :is="href ? 'a' : 'button'" :href="href" class="a-button text-sm font-medium rounded flex flex-row items-center gap-2 px-4 py-[13px]" :class="typeClass">
+  <component :is="href ? 'a' : 'button'" :href="href" class="a-button text-sm font-medium rounded flex flex-row items-center gap-2 px-4 py-[13px]" :class="variantClass">
     <slot />
   </component>
 </template>
@@ -7,11 +7,11 @@
 <script setup lang="ts">
   const props = defineProps<{
     href?: string|undefined;
-    type?: 'primary' | 'secondary'
+    variant?: 'primary' | 'secondary'
   }>()
 
-  const typeClass = computed(() => {
-    switch (props.type) {
+  const variantClass = computed(() => {
+    switch (props.variant) {
       case 'primary':
         return 'bg-blue-500 text-white'
       case 'secondary':

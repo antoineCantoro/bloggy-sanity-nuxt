@@ -36,10 +36,10 @@ const badgeTypes = ['default', 'selected'] as const
         <h3 class="mb-5 font-semibold w-full">
           Button
         </h3>
-        <AppButton href="#atoms" type="primary">
+        <AppButton href="#atoms" variant="primary">
           Read article <ArrowRight :size="16" />
         </AppButton>
-        <AppButton href="#atoms" type="secondary">
+        <AppButton href="#atoms" variant="secondary">
           View all articles
         </AppButton>
         <p class="mt-5 text-sm text-gray-500 w-full">
