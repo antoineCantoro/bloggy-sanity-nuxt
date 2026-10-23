@@ -6,15 +6,18 @@ import 'altcha';
 import type { WidgetAttributes, WidgetMethods } from 'altcha/types';
 
 const altchaWidget = ref<(HTMLElement & WidgetAttributes & WidgetMethods) | null>(null);
+
 const props = defineProps({
   payload: {
     type: String,
     required: false,
   }
 });
+
 const emit = defineEmits<{
   (e: 'update:payload', value: string): void;
 }>();
+
 const internalValue = ref(props.payload);
 
 watch(internalValue, (v) => {
@@ -51,7 +54,6 @@ onUnmounted(() => {
     ref="altchaWidget"
     style="--altcha-max-width:100%"
     :configuration="JSON.stringify({
-      debug: true,
       challenge: '/altcha/challenge',
     })"
   ></altcha-widget>

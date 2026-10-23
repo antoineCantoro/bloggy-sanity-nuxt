@@ -12,14 +12,14 @@
       >
         <fieldset class="flex flex-col gap-2">
           <label for="email">Email</label>
-          <input type="email" id="email" v-model="formData.email" name="email" placeholder="you@example.com" required />
+          <input type="email" id="email" v-model.trim="formData.email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="254" required />
         </fieldset>
         <fieldset class="flex flex-col gap-2" v-show="formData.email">
-          <label for="rgpd">checkbox</label>
-          <input type="checkbox" id="rgpd" v-model="formData.rgpd" name="rgpd" />
+          <input type="checkbox" id="rgpd" v-model="formData.rgpd" name="rgpd" required />
+          <label for="rgpd">I agree to receive the newsletter by email.</label>
         </fieldset>
 
-        <AppButton type="submit" variant="primary">
+        <AppButton type="submit" variant="primary" :disabled="formData.isSubmitting">
           Subscribe <ArrowRight :size="16" />
         </AppButton>
         <ClientOnly>
@@ -57,7 +57,7 @@ async function validateForm() {
     formData.error = 'Invalid email';
     return false;
   }
-  if (!requiredValidator(formData.rgpd.toString())) {
+  if (formData.rgpd !== true) {
     formData.error = 'RGPD consent is required';
     return false;
   }
@@ -65,6 +65,10 @@ async function validateForm() {
 }
 
 async function handleFormSubmit () {
+  if (formData.isSubmitting) {
+    return;
+  }
+
   formData.isSubmitting = true;
   formData.error = null;
 
@@ -86,7 +90,8 @@ async function handleFormSubmit () {
 
     formData.success = res.success;
   } catch (error) {
-    formData.error = error instanceof Error ? error.message : 'Subscription failed';
+    console.error('Newsletter subscription failed', error);
+    formData.error = 'Unable to subscribe right now. Please try again.';
   } finally {
     formData.isSubmitting = false;
   }

@@ -3,8 +3,14 @@ const emailValidator = (email: string) => {
   return emailRegex.test(email)
 }
 
-const requiredValidator = (value: string) => {
-  return value.trim().length > 0
+const requiredValidator = (value: string|boolean) => {
+  if (typeof value === 'string') {
+    return value.trim().length > 0
+  }
+  if (typeof value === 'boolean') {
+    return value === true
+  }
+  return false
 }
 
 export { emailValidator, requiredValidator  }
