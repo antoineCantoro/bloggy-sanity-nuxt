@@ -52,7 +52,7 @@ onUnmounted(() => {
     style="--altcha-max-width:100%"
     :configuration="JSON.stringify({
       debug: true,
-      test: true,
+      challenge: '/altcha/challenge',
     })"
   ></altcha-widget>
 </template>

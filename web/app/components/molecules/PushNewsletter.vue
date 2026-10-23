@@ -49,29 +49,31 @@ const altchaPayload = ref(null);
 const formData = reactive({
   email: '',
   rgpd: false,
-  altchaPayload: null,
+  altchaPayload: '',
   isSubmitting: false,
   success: false,
-  error: null,
+  error: null as string | null,
 });
 
 async function handleFormSubmit () {
   formData.isSubmitting = true;
-  const res = await $fetch('/api/newsletter', {
-    method: 'POST',
-    body: {
-      // My form data
-      email: formData.email,
-      rgpd: formData.rgpd,
-      altchaPayload: formData.altchaPayload,
-    },
-  })
-
-
-  console.log(res);
-  formData.isSubmitting = false;
-  formData.success = res.success;
   formData.error = null;
-  formData.isSubmitting = false;
+
+  try {
+    const res = await $fetch('/api/newsletter', {
+      method: 'POST',
+      body: {
+        email: formData.email,
+        rgpd: formData.rgpd,
+        altchaPayload: formData.altchaPayload,
+      },
+    });
+
+    formData.success = res.success;
+  } catch (error) {
+    formData.error = error instanceof Error ? error.message : 'Subscription failed';
+  } finally {
+    formData.isSubmitting = false;
+  }
 }
 </script>
