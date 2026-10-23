@@ -2,8 +2,18 @@
 import {config} from 'dotenv'
 import {fileURLToPath} from 'node:url'
 import { createClient } from '@sanity/client'
+import 'nuxt/schema'
+
 
 config({path: fileURLToPath(new URL('../.env', import.meta.url))})
+
+declare module 'nuxt/schema' {
+  interface RuntimeConfig {
+    altchaHmacSecret: string
+    altchaHmacKeySecret: string
+    brevoApiKey: string
+  }
+}
 
 const sanityClient = createClient({
   projectId: process.env.SANITY_STUDIO_PROJECT_ID,
@@ -105,6 +115,8 @@ export default defineNuxtConfig({
     server: {
       altchaHmacSecret: process.env.ALTCHA_HMAC_SECRET,
       altchaHmacKeySecret: process.env.ALTCHA_HMAC_KEY_SECRET,
+      brevoApiKey: process.env.BREVO_API_KEY,
+      brevoListId: process.env.BREVO_LIST_ID,
     }
   },
 

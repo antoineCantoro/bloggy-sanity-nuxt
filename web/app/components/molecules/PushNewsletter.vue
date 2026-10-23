@@ -12,11 +12,11 @@
       >
         <fieldset class="flex flex-col gap-2">
           <label for="email">Email</label>
-          <input type="email" id="email" v-model="formData.email" name="email" placeholder="you@example.com" required />
+          <input type="text" id="email" v-model="formData.email" name="email" placeholder="you@example.com" required />
         </fieldset>
         <fieldset class="flex flex-col gap-2" v-show="formData.email">
           <label for="rgpd">checkbox</label>
-          <input type="checkbox" id="rgpd" v-model="formData.rgpd" name="rgpd" required />
+          <input type="checkbox" id="rgpd" v-model="formData.rgpd" name="rgpd" />
         </fieldset>
 
         <button type="submit">Subscribe</button>
@@ -38,13 +38,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 import Altcha from '~/components/atoms/Altcha.vue';
-
-const altchaPayload = ref(null);
-// const email = ref('');
-// const rgpd = ref(false);
-// const rgpd = ref(false);
+import { emailValidator, requiredValidator } from '#shared/validators'
 
 const formData = reactive({
   email: '',
@@ -55,9 +51,27 @@ const formData = reactive({
   error: null as string | null,
 });
 
+async function validateForm() {
+  if (!emailValidator(formData.email)) {
+    formData.error = 'Invalid email';
+    return false;
+  }
+  if (!requiredValidator(formData.rgpd.toString())) {
+    formData.error = 'RGPD consent is required';
+    return false;
+  }
+  return true;
+}
+
 async function handleFormSubmit () {
   formData.isSubmitting = true;
   formData.error = null;
+
+  const isValid = await validateForm();
+  if (!isValid) {
+    formData.isSubmitting = false;
+    return;
+  }
 
   try {
     const res = await $fetch('/api/newsletter', {
