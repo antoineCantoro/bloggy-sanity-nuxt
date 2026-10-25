@@ -86,11 +86,16 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  build: {
+    transpile: ['@lucide/vue']
+  },
+
   routeRules: {
     '/': { prerender: true },
+    // '/blog/**': { prerender: true, noScripts: true },
     '/articles/**': {
       prerender: true,
-      experimentalNoScripts: true
+      noScripts: true
     }
   },
 
