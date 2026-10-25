@@ -1,0 +1,29 @@
+{
+  "name": "@cantoro/astro",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.1.1",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "@sanity/astro": "^3.6.0",
+    "@sanity/client": "^8.11.0",
+    "@sanity/image-url": "^2.1.1",
+    "astro": "^7.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-is": "^19.3.1",
+    "sanity": "^6.20.0",
+    "sharp": "^0.35.0",
+    "styled-components": "^6.6.0"
+  }
+}

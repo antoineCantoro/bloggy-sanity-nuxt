@@ -1,6 +1,7 @@
 packages:
   - 'studio/**'
   - 'web/**'
+  - 'astro/**'
 allowBuilds:
   '@parcel/watcher': false
   '@tailwindcss/oxide': false
